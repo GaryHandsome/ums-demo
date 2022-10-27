@@ -45,7 +45,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 
             // 第六：对象结果进行处理
             if(rst.next()) {
-                // 1）如果有数据，则创建用户对象
+                // 1）如果有数据，则创建用户对象，否则返回user默认为null
                 user = new UserInfo() ;
 
                 // 2）获取数据表中各列的数据
@@ -70,6 +70,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
             // 第七：关闭相关的对象
             DBUtil.close(rst,pstmt,conn);
         }
+
         return user ;
     }
 }
