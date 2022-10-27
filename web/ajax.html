@@ -5,7 +5,7 @@
     <title>异步请求</title>
 </head>
 <body>
-    响应结果为：<span></span>
+    响应结果为：<span id="result"></span>
 
     <p/>
     <button id="btn" type="button" onclick="async()">发送异步请求</button>
@@ -23,7 +23,15 @@
             // 第四：发送请求 - 调用 send 方法
             req.send(null) ;
 
-
+            // 第五：设置回调函数 - 绑定 onreadystatechange 事件- 获取服务器响应的结果
+            req.onreadystatechange = function() {
+                // readyState=4 表示完成请求响应这个过程
+                // status=200 表示正常响应
+                if (req.readyState==4 && req.status==200) {
+                    // DOM 操作 - 获取服务器响应的数据 - 回显在指定的节点中
+                    document.getElementById("result").innerHTML = req.responseText ;
+                }
+            }
 
         }
 
