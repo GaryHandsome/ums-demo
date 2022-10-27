@@ -137,7 +137,21 @@ AJAX 是一种用于创建快速动态网页的技术。
 
 
 
+第二：初始化HTTP请求参数
 
+> 调用 open() 方法
+
+```js
+open(method,uri,async,[username],[password]))
+```
+
+-  metod:请求方式，get,post,put,delete或head 
+
+-  uri：请求的服务器地址 
+
+-  async:设置异步或同步，true(默认)/false 
+
+-  根据需要可传username和password给服务器进行用户验证 
 
 
 
