@@ -53,6 +53,8 @@ insert into userinfo(username,password,user_age,user_sex,weight)
     alt + insert : 生成代码
     alt + enter : 万能键（代码提示）
     alt + shift + 向上|向下 ：移动代码
+    ctrl + d ：复制当前选中代码
+    ctrl + y : 删除当前选中代码
 
 
 

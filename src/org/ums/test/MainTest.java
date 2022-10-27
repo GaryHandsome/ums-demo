@@ -14,7 +14,12 @@ public class MainTest {
         UserInfoDao userInfoDao = new UserInfoDaoImpl();
 
         // 通过 DAO 对象操作数据库，根据帐号查询用户信息
-        UserInfo user = userInfoDao.selectUserInfoByName("admin");
+        UserInfo user = userInfoDao.selectUserInfoByName("abc");
+
+        if(user==null) {
+            System.out.println("查无此人");
+            return ;
+        }
 
         // 输出结果
         System.out.println(user);
