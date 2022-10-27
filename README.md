@@ -132,7 +132,7 @@ AJAX 是一种用于创建快速动态网页的技术。
 第一：创建XMLHTTPRequest对象
 
 ```javascript
- var xmlHttpReq = new XMLHttpRequest();
+ var req = new XMLHttpRequest();
 ```
 
 
@@ -152,6 +152,44 @@ open(method,uri,async,[username],[password]))
 -  async:设置异步或同步，true(默认) / false 
 
 -  根据需要可传username和password给服务器进行用户验证 
+
+
+
+第三：编写服务器端程序 - Servlet 
+
+略
+
+
+
+第四：发送请求 - 调用 send 方法
+
+```js
+send([data])
+```
+
+- data：表示向服务器传递的参数
+  - 如果不传递，则使用 null 表示即可
+
+
+
+第五：设置回调函数 - 获取服务器响应的结果
+
+```js
+// 绑定 onreadystatechange 事件
+req.onreadystatechange = function() {
+    // readyState=4 表示完成请求响应这个过程
+    // status=200 表示正常响应
+   	if (req.readyState==4 && req.status==200) {
+       
+       	// DOM 操作
+		document.getElementById("result").innerHTML = 
+            // 获取服务器应用的数据
+        	req.responseText ;
+	} 
+}
+```
+
+
 
 
 

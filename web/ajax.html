@@ -16,9 +16,13 @@
             var req = new XMLHttpRequest();
 
             // 第二：初始化HTTP请求参数 - 调用 open 方法
-            req.open("get","xxx.do",true) ;
+            req.open("get","hello.do",true) ;
 
             // 第三：编写服务器端程序 - Servlet
+
+            // 第四：发送请求 - 调用 send 方法
+            req.send(null) ;
+
 
 
         }
