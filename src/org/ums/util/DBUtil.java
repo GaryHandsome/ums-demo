@@ -1,8 +1,6 @@
 package org.ums.util;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  * 连接数据库的工具类
@@ -56,4 +54,41 @@ public class DBUtil {
         return conn;
     }
 
+
+    /**
+     * 关闭相关的对象
+     *
+     * @param rst 结果集对象
+     * @param stmt 语句对象
+     * @param conn 连接对象
+     */
+    public static void close(ResultSet rst, Statement stmt, Connection conn) {
+        if (rst != null) {
+            try {
+                rst.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (stmt != null) {
+            try {
+                stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(DBUtil.getConnection());
+    }
 }
