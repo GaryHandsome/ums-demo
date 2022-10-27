@@ -149,7 +149,7 @@ open(method,uri,async,[username],[password]))
 
 -  uri：请求的服务器地址 
 
--  async:设置异步或同步，true(默认)/false 
+-  async:设置异步或同步，true(默认) / false 
 
 -  根据需要可传username和password给服务器进行用户验证 
 
