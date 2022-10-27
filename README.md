@@ -52,6 +52,7 @@ insert into userinfo(username,password,user_age,user_sex,weight)
     ctrl + alt + l : 代码格式化
     alt + insert : 生成代码
     alt + enter : 万能键（代码提示）
+    alt + shift + 向上|向下 ：移动代码
 
 
 

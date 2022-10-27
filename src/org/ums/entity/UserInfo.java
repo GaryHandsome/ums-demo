@@ -61,4 +61,16 @@ public class UserInfo {
     public void setWeight(double weight) {
         this.weight = weight;
     }
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", userAge=" + userAge +
+                ", userSex='" + userSex + '\'' +
+                ", weight=" + weight +
+                '}';
+    }
 }

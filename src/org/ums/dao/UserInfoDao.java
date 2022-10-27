@@ -1,5 +1,7 @@
 package org.ums.dao;
 
+import org.ums.entity.UserInfo;
+
 /**
  * DAO接口 - 用户
  *
@@ -12,5 +14,5 @@ public interface UserInfoDao {
      *
      * @param username
      */
-    void selectUserInfoByName(String username);
+     UserInfo selectUserInfoByName(String username);
 }
