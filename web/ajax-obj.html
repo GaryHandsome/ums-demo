@@ -6,7 +6,8 @@
 </head>
 <body>
     <h1>服务器响应对象</h1>
-    响应结果为：<span id="result"></span>
+    姓名：<span id="name"></span> <p/>
+    年龄：<span id="age"></span>
 
     <p/>
     <button id="btn" type="button" onclick="async()">发送异步请求</button>
@@ -30,8 +31,21 @@
                 // status=200 表示正常响应
                 if (req.readyState==4 && req.status==200) {
                     // DOM 操作 - 获取服务器响应的数据 - 回显在指定的节点中
-                    var obj = req.responseText ;
-                    console.log(obj)
+                    var json = req.responseText ;
+
+                    console.log(json)
+                    // 注意：服务器应用回来的 JSON 是一个JavaScript对象的字符串表示
+                    console.log(typeof json)
+
+                    // 把 JSON 字符串转换为 JavaScript对象
+                    var obj = eval("(" + json + ")") ;
+
+                    console.log(obj.name)
+                    console.log(obj.age)
+
+                    document.getElementById("name").innerText = obj.name ;
+                    document.getElementById("age").innerText = obj.age ;
+
                 }
             }
 

@@ -20,6 +20,7 @@ public class ObjectServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter out = resp.getWriter();
 
+        // 响应数据转换为JSON字符串非常麻烦 - GSON
         String json = "{'name':'zs','age':18}" ;
 
         out.print(json);
