@@ -2,7 +2,6 @@
 
 <h6 style="color:red">非常重要，反复练习</h6>
 
-
 <h6 style="color:blue">具体操作步骤：</h6>
 第一：创建Web项目
 
@@ -119,7 +118,94 @@ AJAX 是一种用于创建快速动态网页的技术。
 
 
 
-### 2、实现
+### 2、JSON
+
+#### 1）概念
+
+```js
+// 定义 Javascript 对象 - 文本标记法
+var stu = {
+    name:'zs',
+    age:18
+}
+
+// 字符串 - JavaScript对象的表示 - 实现后端与前端之间的数据转递
+var json = "{'name':'zs','age':18}" ;
+```
+
+
+
+JSON 指的是 JavaScript 对象表示法（JavaScript Object Notation）
+
+
+
+JSON 是**轻量级**的文本数据交换格式，相对于 XML而言
+
+
+
+JSON 独立于语言
+
+
+
+JSON 具有自我描述性，更易理解
+
+
+
+JSON 是存储和交换文本信息的语法。类似 XML，但JSON 比 XML 更小、更快，更易解析。
+
+
+
+#### 2）作用
+
+实现后端与前端之间的数据转递
+
+
+
+#### 3）语法
+
+JSON 语法是 JavaScript 对象表示法语法的子集。
+
+-  数据在名称 / 值对中 
+
+-  数据由逗号分隔 
+
+-  花括号保存对象 
+
+-  方括号保存数组 
+
+```javascript
+var 对象 = {
+    属性名称1:值 ,
+    ...
+    属性名称N:值 
+}
+```
+
+JSON 值可以是：
+
+-  数字（整数或浮点数） 
+
+-  字符串（使用双引号或单引号） 
+
+-  逻辑值（true 或 false） 
+
+-  数组（在方括号中） 
+
+-  对象（在花括号中） 
+
+-  null 
+
+
+
+JSON 文件 - JSON数据根据需求，也可以定义在一个文件中
+
+-  JSON 文件的文件类型是 ".json" 
+
+-  JSON 文本的 MIME 类型是 "application/json" 
+
+
+
+### 3、实现
 
 #### 1）原生实现
 
@@ -129,7 +215,7 @@ AJAX 是一种用于创建快速动态网页的技术。
 
 1.2）操作步骤
 
-第一：创建XMLHTTPRequest对象
+第一：创建 XMLHttpRequest 对象
 
 ```javascript
  var req = new XMLHttpRequest();
@@ -142,7 +228,7 @@ AJAX 是一种用于创建快速动态网页的技术。
 > 调用 open() 方法
 
 ```js
-open(method,uri,async,[username],[password]))
+req.open(method,uri,async,[username],[password]))
 ```
 
 -  metod:请求方式，get,post,put,delete或head 
@@ -157,14 +243,20 @@ open(method,uri,async,[username],[password]))
 
 第三：编写服务器端程序 - Servlet 
 
-略
+- 处理同步请求的Serlvet
+  - 把响应的数据，设置在作用域对象中，并跳转到 JSP 页面中 
+  - 然后，在JSP中使用 JSTL + EL 读取作用域数据
+- 处理异步请求的Serlvet
+  - 把响应数据，使用 PrintWriter 对象，以**字符串**的方式打印输出到页面（JSP、HTML）中
+  - 使用 XMLHttpRequest 的responseText属性接收Servlet打印输出的**字符串**
+  - 使用 DOM 操作 - 节点、样式
 
 
 
 第四：发送请求 - 调用 send 方法
 
 ```js
-send([data])
+req.send([data])
 ```
 
 - data：表示向服务器传递的参数

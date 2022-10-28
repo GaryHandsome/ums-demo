@@ -20,6 +20,10 @@ public class HelloWorldServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter out = resp.getWriter();
 
+        // 思考：响应简单字符串，没有问题，如下所示
+        // 如果我要响应多个数据（对象）呢？
+        // 如果我要响应多个对象（List）呢？
+        // 解决：使用 JSON 格式的字符串 - 把对象或List集合 转换为 JSON 字符串
         out.print("Hello,World");
 
         out.flush();

@@ -30,6 +30,7 @@
                 if (req.readyState==4 && req.status==200) {
                     // DOM 操作 - 获取服务器响应的数据 - 回显在指定的节点中
                     document.getElementById("result").innerHTML = req.responseText ;
+                    document.getElementById("result").setAttribute("style","color:red") ;
                 }
             }
 
