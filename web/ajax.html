@@ -16,12 +16,17 @@
             var req = new XMLHttpRequest();
 
             // 第二：初始化HTTP请求参数 - 调用 open 方法
-            req.open("get","hello.do",true) ;
+            req.open("get","hello.do?name=zs&age=18",true) ;
 
             // 第三：编写服务器端程序 - Servlet
 
             // 第四：发送请求 - 调用 send 方法
             req.send(null) ;
+
+            // 客户端向服务器发送数据，通过send()的参数实现传递
+            // 语法：send(参数名１=值&参数名２=值,...,&参数名N=值)
+            // req.send("name=zs&age=18") ;
+            // req.send("{name:'zs',age:18}") ;
 
             // 第五：设置回调函数 - 绑定 onreadystatechange 事件- 获取服务器响应的结果
             req.onreadystatechange = function() {

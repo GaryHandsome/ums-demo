@@ -32,8 +32,10 @@
                     // DOM 操作 - 获取服务器响应的数据 - 回显在指定的节点中
                     var json = req.responseText ;
 
+                    // 把 JSON 字符串 转换为 JavaScript数组
                     var arr = eval("(" + json + ")") ;
 
+                    // 循环遍历，控制台输出 - 在实际开发中，需要做DOM操作，在页面中显示数据
                     for(var i=0;i<arr.length;i++) {
                         console.log(arr[i].name,arr[i].age)
                     }

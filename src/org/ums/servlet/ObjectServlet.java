@@ -1,5 +1,8 @@
 package org.ums.servlet;
 
+import com.google.gson.Gson;
+import org.ums.entity.Stu;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +24,11 @@ public class ObjectServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
 
         // 响应数据转换为JSON字符串非常麻烦 - GSON
-        String json = "{'name':'zs','age':18}" ;
+        // String json = "{'name':'zs','age':18}" ;
+        Stu stu = new Stu("zhangsan", 28);
+
+        // GSON：把对象转换为 JSON 字符串
+        String json = new Gson().toJson(stu);
 
         out.print(json);
 
