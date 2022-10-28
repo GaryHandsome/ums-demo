@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>异步请求 - 响应对象</title>
+</head>
+<body>
+    <h1>服务器响应对象</h1>
+    响应结果为：<span id="result"></span>
+
+    <p/>
+    <button id="btn" type="button" onclick="async()">发送异步请求</button>
+
+    <script>
+        function async() {
+            // 第一：实例化 XMLHTTPRequest 对象
+            var req = new XMLHttpRequest();
+
+            // 第二：初始化HTTP请求参数 - 调用 open 方法
+            req.open("get","obj.do",true) ;
+
+            // 第三：编写服务器端程序 - Servlet
+
+            // 第四：发送请求 - 调用 send 方法
+            req.send(null) ;
+
+            // 第五：设置回调函数 - 绑定 onreadystatechange 事件- 获取服务器响应的结果
+            req.onreadystatechange = function() {
+                // readyState=4 表示完成请求响应这个过程
+                // status=200 表示正常响应
+                if (req.readyState==4 && req.status==200) {
+                    // DOM 操作 - 获取服务器响应的数据 - 回显在指定的节点中
+                    var obj = req.responseText ;
+                    console.log(obj)
+                }
+            }
+
+        }
+
+    </script>
+</body>
+</html>
