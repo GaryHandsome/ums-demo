@@ -14,7 +14,7 @@ import java.io.PrintWriter;
  * @Date 2022-10-27
  * @Author zqx
  */
-@WebServlet("/hello.do")
+@WebServlet("/obj.do")
 public class ObjectServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
