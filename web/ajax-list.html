@@ -5,9 +5,8 @@
     <title>异步请求 - 响应对象</title>
 </head>
 <body>
-    <h1>服务器响应对象</h1>
-    姓名：<span id="name"></span> <p/>
-    年龄：<span id="age"></span>
+    <h1>服务器响应List集合</h1>
+    <h3>请查看浏览器控制台</h3>
 
     <p/>
     <button id="btn" type="button" onclick="async()">发送异步请求</button>
@@ -18,7 +17,7 @@
             var req = new XMLHttpRequest();
 
             // 第二：初始化HTTP请求参数 - 调用 open 方法
-            req.open("get","obj.do",true) ;
+            req.open("get","list.do",true) ;
 
             // 第三：编写服务器端程序 - Servlet
 
@@ -33,17 +32,11 @@
                     // DOM 操作 - 获取服务器响应的数据 - 回显在指定的节点中
                     var json = req.responseText ;
 
-                    console.log(json)
-                    // 注意：服务器应用回来的 JSON 是一个JavaScript对象的字符串表示
-                    console.log(typeof json)
+                    var arr = eval("(" + json + ")") ;
 
-                    // 把 JSON 字符串转换为 JavaScript 对象
-                    var obj = eval("(" + json + ")") ;
-
-                    console.log(obj.name,obj.age)
-
-                    document.getElementById("name").innerText = obj.name ;
-                    document.getElementById("age").innerText = obj.age ;
+                    for(var i=0;i<arr.length;i++) {
+                        console.log(arr[i].name,arr[i].age)
+                    }
 
                 }
             }
