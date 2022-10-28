@@ -187,13 +187,13 @@ JSON 值可以是：
 
 -  字符串（使用双引号或单引号） 
 
--  逻辑值（true 或 false） 
+-  布尔值（true 或 false） 
 
 -  数组（在方括号中） 
 
 -  对象（在花括号中） 
 
--  null 
+-  null / undefind
 
 
 
@@ -202,6 +202,9 @@ JSON 文件 - JSON数据根据需求，也可以定义在一个文件中
 -  JSON 文件的文件类型是 ".json" 
 
 -  JSON 文本的 MIME 类型是 "application/json" 
+  - text/html
+  - text/css
+  - text/javascript
 
 
 
@@ -260,7 +263,37 @@ req.send([data])
 ```
 
 - data：表示向服务器传递的参数
+  
   - 如果不传递，则使用 null 表示即可
+  
+  - GET请求 + 传参：
+  
+    ```js
+    // get请求，并指定传递参数
+    req.open("get","hello.do?name=zs&age=18",true) ;
+    req.send(null);
+    ```
+  
+  - POST请求 + 传参
+  
+    ```js
+    // post请求
+    req.open("post","hello.do",true) ;
+    
+    // 设置表单传输的编码格式（注意，必须在open方法之后设置）
+    req.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    
+    // 语法：send(参数名１=值&参数名２=值,...,&参数名N=值)
+    req.send("name=zing&age=18") ;
+    ```
+  
+    
+
+
+
+
+
+
 
 
 

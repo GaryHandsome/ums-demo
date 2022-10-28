@@ -35,4 +35,9 @@ public class HelloWorldServlet extends HttpServlet {
         out.close();
 
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.doGet(req,resp);
+    }
 }
