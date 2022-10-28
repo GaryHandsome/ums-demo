@@ -1,7 +1,6 @@
 ## IDEA工具实现用户登录（复习）
 
 <h6 style="color:red">非常重要，反复练习</h6>
-
 <h6 style="color:blue">具体操作步骤：</h6>
 第一：创建Web项目
 
@@ -109,6 +108,10 @@ insert into userinfo(username,password,user_age,user_sex,weight)
 
 
 AJAX 是一种用于创建快速动态网页的技术。
+
+
+
+异步请求的好处：页面不刷新，更新数据 - 增强用户体验
 
 
 
