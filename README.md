@@ -274,7 +274,7 @@ req.send([data])
     ```js
     // get请求，并指定传递参数
     req.open("get","hello.do?name=zs&age=18",true) ;
-    req.send(null);
+    req.send();
     ```
   
   - POST请求 + 传参
