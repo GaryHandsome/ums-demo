@@ -16,8 +16,8 @@ import java.io.PrintWriter;
 
 /**
  * 异步请求实现实现用户登录
- *
- *  我希望所有 Servlet 都可以访问封装的公共方法,怎么做？
+ * <p>
+ * 我希望所有 Servlet 都可以访问封装的公共方法,怎么做？
  *
  * @Date 2022-10-27
  * @Author zqx
@@ -35,18 +35,20 @@ public class AjaxLoginServlet extends BaseServlet {
         UserInfo user = userInfoDao.selectUserInfoByName(username);
 
         // 第三：定义响应对象，封装响应数据
-        ResponseData responseData = null ;
+        ResponseData responseData = null;
 
         if (user == null) {
             responseData = error("查无此人，请注册");
 
-        } else if(!user.getPassword().equals(password)) {
-            responseData = error("错误帐号或密码") ;
+        } else if (!user.getPassword().equals(password)) {
+            responseData = error("错误帐号或密码");
+        } else {
+            responseData = success(user);
         }
-        responseData = success(user) ;
 
         // 第四：把响应数据转化为 JSON 字符串，并打印输出
         String json = new Gson().toJson(responseData);
+        resp.setContentType("application/json;charset=utf-8");
         PrintWriter out = resp.getWriter();
         out.print(json);
 

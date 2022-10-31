@@ -41,8 +41,36 @@
             req.onreadystatechange = function () {
                 // 完成响应且响应成功
                 if(req.status==200 && req.readyState==4) {
+                    // 获取响应回来的 JSON 字符串
                     var json = req.responseText ;
-                    console.log(json) ;
+
+                    console.log(json)
+
+                    // 把 JSON 字符串转换化为 JS 对象
+                    var res = eval("(" + json + ")")
+
+                    // 对响应对象进行逻辑判断
+                    if(res.code==500) {
+                        // 显示错误信息
+                        document.getElementById("err_msg").innerText = res.msg ;
+                        document.getElementById("err_msg").style.display = "block"
+
+                        // 显示表单
+                        document.getElementById("frm").style.display = "block"
+                        // 隐藏成功信息
+                        document.getElementById("suc_msg").style.display = "none"
+                        return ;
+                    }
+
+                    // 错误信息隐藏
+                    document.getElementById("err_msg").style.display = "none"
+                    // 表单隐藏
+                    document.getElementById("frm").style.display = "none"
+                    // 显示成功信息
+                    document.getElementById("suc_msg").style.display = "block"
+                    // 显示登录成功的帐号
+                    document.getElementById("user").innerText = res.data.username ;
+
                 }
             }
 
