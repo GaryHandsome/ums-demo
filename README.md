@@ -227,6 +227,13 @@ JSON 文件 - JSON数据根据需求，也可以定义在一个文件中
  var req = new XMLHttpRequest();
 ```
 
+默认情况下，客户端可以通过以下两个方法发起同步请求：
+
+- 超链接
+  - a标签
+  - JS中location.href
+- 表单提交
+
 
 
 第二：初始化HTTP请求参数

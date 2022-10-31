@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+</head>
+<body>
+    <h1>用户登录 - Ajax异步实现</h1>
+    <form id="frm">
+        帐号：<input type="text" name="uname" value="admin"/><br/>
+        密码：<input type="text" name="upass" value="123456"/><br/>
+        <input type="button" value="登录" onclick="ajaxLogin()">
+    </form>
+
+    <h2 style="display: none" id="suc_msg">
+        登录成功，欢迎<span id="user"></span>
+    </h2>
+
+    <h2 style="display: none" id="err_msg">
+    </h2>
+</body>
+</html>
