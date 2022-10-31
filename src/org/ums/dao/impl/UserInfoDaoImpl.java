@@ -73,4 +73,44 @@ public class UserInfoDaoImpl implements UserInfoDao {
 
         return user ;
     }
+
+    @Override
+    public int insertUserInfo(UserInfo userInfo) {
+        int r = 0 ;
+
+        // 第一：定义要操作数据库的SQL语句
+        String sql = "insert into userinfo(username,password,user_age,user_sex,weight) values (?,?,?,?,?)" ;
+
+        Connection conn = null ;
+        PreparedStatement pstmt = null ;
+
+
+        try {
+            // 第二：获取连接对象
+            conn = DBUtil.getConnection();
+
+            // 第三：预编译SQL语句，实例化语句对象
+            pstmt = conn.prepareStatement(sql);
+
+            // 第四：填充数据
+            pstmt.setString(1,userInfo.getUsername());
+            pstmt.setString(2,userInfo.getPassword());
+            pstmt.setInt(3,userInfo.getUserAge());
+            pstmt.setString(4,userInfo.getUserSex());
+            pstmt.setDouble(5,userInfo.getWeight());
+
+            // 第五：执行SQL语句，并接收执行的结果
+            r = pstmt.executeUpdate();
+
+            // 第六：对象结果进行处理
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            // 第七：关闭相关的对象
+            DBUtil.close(null,pstmt,conn);
+        }
+
+        return r ;
+    }
 }

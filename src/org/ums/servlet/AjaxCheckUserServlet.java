@@ -34,9 +34,9 @@ public class AjaxCheckUserServlet extends BaseServlet {
         ResponseData responseData = null;
 
         if (user == null) {
-            responseData = error("此帐号未注册，可用");
+            responseData = success(200,"此帐号未注册，可用","");
         } else {
-            responseData = success("此帐号已注册，不可用");
+            responseData = error(500,"此帐号已注册，不可用","");
         }
 
         // 第四：把响应数据转化为 JSON 字符串，并打印输出

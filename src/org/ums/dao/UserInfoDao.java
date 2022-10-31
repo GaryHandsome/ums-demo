@@ -14,5 +14,13 @@ public interface UserInfoDao {
      *
      * @param username
      */
-     UserInfo selectUserInfoByName(String username);
+    UserInfo selectUserInfoByName(String username);
+
+    /**
+     * 添加用户
+     *
+     * @param userInfo
+     * @return
+     */
+    int insertUserInfo(UserInfo userInfo);
 }
