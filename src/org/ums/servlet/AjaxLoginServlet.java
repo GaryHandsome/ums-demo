@@ -23,7 +23,7 @@ import java.io.PrintWriter;
  * @Author zqx
  */
 @WebServlet("/ajax_login.do")
-public class AjaxLoginServlet extends HttpServlet {
+public class AjaxLoginServlet extends BaseServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 第一：获取表单中输入的数据
@@ -36,18 +36,20 @@ public class AjaxLoginServlet extends HttpServlet {
 
         // 第三：定义响应对象，封装响应数据
         ResponseData responseData = null ;
+
         if (user == null) {
-            responseData = new ResponseData(500,"查无此人，请注册",null) ;
+            responseData = error("查无此人，请注册");
+
         } else if(!user.getPassword().equals(password)) {
-            responseData = new ResponseData(500,"错误帐号或密码",null) ;
+            responseData = error("错误帐号或密码") ;
         }
-        responseData = new ResponseData(200,"登录成功",user) ;
+        responseData = success(user) ;
 
         // 第四：把响应数据转化为 JSON 字符串，并打印输出
         String json = new Gson().toJson(responseData);
-
         PrintWriter out = resp.getWriter();
         out.print(json);
+
         out.flush();
         out.close();
 

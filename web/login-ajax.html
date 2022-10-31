@@ -7,8 +7,8 @@
 <body>
     <h1>用户登录 - Ajax异步实现</h1>
     <form id="frm">
-        帐号：<input type="text" name="uname" value="admin"/><br/>
-        密码：<input type="text" name="upass" value="123456"/><br/>
+        帐号：<input type="text" name="uname" id="uname" value="admin"/><br/>
+        密码：<input type="text" name="upass" id="upass" value="123456"/><br/>
         <input type="button" value="登录" onclick="ajaxLogin()">
     </form>
 
@@ -18,5 +18,42 @@
 
     <h2 style="display: none" id="err_msg">
     </h2>
+
+    <script>
+        // 异步登录
+        function ajaxLogin() {
+            // 第一：创建 XMLHttpRequest 对象
+            var req = new XMLHttpRequest();
+
+            // 第二：初始化参数
+            req.open("post","ajax_login.do",true);
+
+            // 第三：设置请求头信息
+            req.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+            // 第四：发送请求，并传递数据
+            var name = document.getElementById("uname").value ;
+            var pass = document.getElementById("upass").value ;
+            var data = "uname=" + name +  "&upass=" + pass　;
+            req.send(data);
+
+            // 第五：设置回调函数 - 获取服务器响应的结果
+            req.onreadystatechange = function () {
+                // 完成响应且响应成功
+                if(req.status==200 && req.readyState==4) {
+                    var json = req.responseText ;
+                    console.log(json) ;
+                }
+            }
+
+        }
+
+
+
+
+
+
+
+    </script>
 </body>
 </html>
