@@ -42,7 +42,9 @@ public class RegisterServlet extends HttpServlet {
         int r = userInfoDao.insertUserInfo(userInfo) ;
 
         // 第三：把数据设置在作用域对象中
+        req.setAttribute("user",name);
 
         // 第四：页面跳转
+        req.getRequestDispatcher("reg_suc.jsp").forward(req,resp);
     }
 }
