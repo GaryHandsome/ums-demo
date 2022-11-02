@@ -329,3 +329,39 @@ req.onreadystatechange = function() {
 
 
 #### 2）JQ实现
+
+
+
+
+
+
+
+
+
+
+
+## 商品信息的管理
+
+1、数据库
+
+```mssql
+create database pms ;
+
+use pms ;
+
+-- 产品信息表
+create table product
+(
+	  product_id varchar(50) primary key  not null ,					-- 产品编号
+	  product_name varchar(50) not null,								-- 产品名称
+	  product_type varchar(50)  not null ,								-- 产品分类
+	  product_price float not null,										-- 产品价格
+	  product_count int not null default 1,								-- 产品库存
+	  product_image varchar(50) default 'default.jpeg',					-- 产品图片
+	  product_date	datetime default getdate(),							-- 上货日期
+	  product_desc varchar(200) default '暂无描述',						 -- 描述
+	  product_sale int,													-- 销量
+	  product_status int 												-- 是否上架
+) ;
+```
+

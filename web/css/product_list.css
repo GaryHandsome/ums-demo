@@ -1,0 +1,59 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    text-align: center;
+}
+
+#form-container {
+    width:500px;
+    height: 300px;
+    border: 1px solid red;
+    border-radius: 10px;
+    margin-top: 30px;
+    padding: 40px;
+
+    /* 宽度 = width + border + padding */
+    box-sizing: border-box;
+
+    /* 卡位：好让子元素相对于当前父元素定位 */
+    position: relative;
+}
+
+#title {
+    width: 100px;
+    height: 30px;
+    background-color: black;
+    color:white;
+    text-align: center;
+    line-height: 30px;
+
+    position: absolute;
+    left: 10px;
+    top:-18px;
+}
+
+#tips {
+    width: 200px;
+    height: 50px;
+    background-color: yellow;
+    color:red;
+    text-align: center;
+    line-height: 50px;
+
+    position: absolute;
+    right: -220px;
+    top:0;
+}
+
+#btnUpdate {
+    display: none ;
+}
+
+table tr td span {
+    margin-right: 10px;
+    text-decoration: underline;
+    cursor: pointer;
+}
