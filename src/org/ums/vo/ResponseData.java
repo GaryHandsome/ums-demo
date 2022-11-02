@@ -1,6 +1,6 @@
 package org.ums.vo;
 /**
- * 封装服务器响应的数据 - API 接口
+ * 封装服务器响应的数据 - API 接口 - 礼盒
  * VO(Value Object) : 值对象
  *
  * @Date 2022-10-31

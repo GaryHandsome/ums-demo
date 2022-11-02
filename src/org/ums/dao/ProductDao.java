@@ -6,6 +6,8 @@ import java.util.List;
 
 /**
  * 商品 DAO 接口（标准、规范） - 服务业务（Servlet、业务对象）
+ * <p>
+ * 仓库管理员
  *
  * @Date 2022-11-02
  * @Author zqx

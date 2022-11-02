@@ -200,7 +200,7 @@ public class ProductDaoImpl implements ProductDao {
         List<Product> list = new ArrayList<>();
 
         // 第一：定义要操作数据库的SQL语句
-        String sql = "select product_id,product_name,product_type,product_price,product_count,product_image,product_date,product_desc,product_sale,product_status from product where product_id=?";
+        String sql = "select product_id,product_name,product_type,product_price,product_count,product_image,product_date,product_desc,product_sale,product_status from product";
 
         Connection conn = null;
         PreparedStatement pstmt = null;

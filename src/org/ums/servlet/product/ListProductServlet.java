@@ -1,6 +1,7 @@
 package org.ums.servlet.product;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.ums.dao.ProductDao;
 import org.ums.dao.impl.ProductDaoImpl;
 import org.ums.entity.Product;
@@ -9,11 +10,9 @@ import org.ums.vo.ResponseData;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 /**
@@ -34,7 +33,9 @@ public class ListProductServlet extends BaseServlet {
 
         // 第三：把数据转为 JSON 字符串
         ResponseData responseData = success(list);
-        String json = new Gson().toJson(responseData);
+        // String json = new Gson().toJson(responseData);
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+        String json = gson.toJson(responseData);
 
         // 第四：打印输出 - 响应客户端
         print(resp, json);
