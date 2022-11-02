@@ -3,6 +3,9 @@ package org.ums.servlet;
 import org.ums.vo.ResponseData;
 
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * 所有 Servlet 的父类 - 封装公共方法
@@ -52,5 +55,18 @@ public class BaseServlet extends HttpServlet {
      */
     public ResponseData error(Integer code, String msg, Object data) {
         return new ResponseData(code, msg, data);
+    }
+
+
+    /**
+     * 响应客户端 - 打印输出 JSON 字符串
+     * @param json
+     */
+    protected void print(HttpServletResponse resp,String json) throws IOException {
+        resp.setContentType("application/json;charset=utf-8");
+        PrintWriter out = resp.getWriter();
+        out.print(json);
+        out.flush();
+        out.close();
     }
 }
