@@ -40,7 +40,7 @@ public interface ProductDao {
      *
      * @return
      */
-    Product selectProductByProductId();
+    Product selectProductByProductId(String pid);
 
     /**
      * 查询所有商品
