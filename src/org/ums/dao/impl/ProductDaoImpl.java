@@ -20,7 +20,7 @@ public class ProductDaoImpl implements ProductDao {
         int r = 0;
 
         // 第一：定义要操作数据库的SQL语句
-        String sql = "insert into product(product_id,product_name,product_price,product_date,product_status) values (?,?,?,?,?)";
+        String sql = "insert into product(product_id,product_name,product_type,product_price,product_date,product_status) values (?,?,?,?,?,?)";
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -36,9 +36,10 @@ public class ProductDaoImpl implements ProductDao {
             // 第四：填充数据
             pstmt.setString(1, product.getProductId());
             pstmt.setString(2, product.getProductName());
-            pstmt.setDouble(3, product.getProductPrice());
-            pstmt.setTimestamp(4, new Timestamp(product.getProductDate().getTime()));
-            pstmt.setInt(5, product.getProductStatus());
+            pstmt.setString(3, product.getProductType());
+            pstmt.setDouble(4, product.getProductPrice());
+            pstmt.setTimestamp(5, new Timestamp(product.getProductDate().getTime()));
+            pstmt.setInt(6, product.getProductStatus());
 
             // 第五：执行SQL语句，并接收执行的结果
             r = pstmt.executeUpdate();
@@ -64,7 +65,6 @@ public class ProductDaoImpl implements ProductDao {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
-
 
         try {
             // 第二：获取连接对象
@@ -96,7 +96,7 @@ public class ProductDaoImpl implements ProductDao {
         int r = 0;
 
         // 第一：定义要操作数据库的SQL语句
-        String sql = "update product set product_name=?,product_price=?,product_date=?,product_status=? where product_id=?";
+        String sql = "update product set product_name=?,product_type=?,product_price=?,product_date=?,product_status=? where product_id=?";
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -111,10 +111,11 @@ public class ProductDaoImpl implements ProductDao {
 
             // 第四：填充数据
             pstmt.setString(1, product.getProductName());
-            pstmt.setDouble(2, product.getProductPrice());
-            pstmt.setTimestamp(3, new Timestamp(product.getProductDate().getTime()));
-            pstmt.setInt(4, product.getProductStatus());
-            pstmt.setString(5, product.getProductId());
+            pstmt.setString(2, product.getProductType());
+            pstmt.setDouble(3, product.getProductPrice());
+            pstmt.setTimestamp(4, new Timestamp(product.getProductDate().getTime()));
+            pstmt.setInt(5, product.getProductStatus());
+            pstmt.setString(6, product.getProductId());
 
             // 第五：执行SQL语句，并接收执行的结果
             r = pstmt.executeUpdate();
