@@ -363,5 +363,45 @@ create table product
 	product_sale int default 0,										-- 销量
 	product_status int  													-- 是否上架
 ) ;
+
+-- 初始化数据
+insert into product(product_id,product_name,product_type,product_price,product_count,product_image,product_date,product_desc,product_sale,product_status) 
+values ('101','米家智能插座WIFI版','家电',39.5,100,'101.png','2013-01-07','101..',100,1) ;
+
+insert into product(product_id,product_name,product_type,product_price,product_count,product_image,product_date,product_desc,product_sale,product_status)  
+	values ('102','德尔玛多功能蒸汽清洁机','家电',59.5,100,'102.png','2015-11-01','102..',200,1) ;
+
+insert into product(product_id,product_name,product_type,product_price,product_count,product_image,product_date,product_desc,product_sale,product_status)  
+	values ('103','90分框体旅行箱','家居',200,100,'103.png','2013-09-04','103..',300,1) ;
+
+insert into product(product_id,product_name,product_type,product_price,product_count,product_image,product_date,product_desc,product_sale,product_status)  
+	values ('104','米家两六冰箱160L','家电',1999.5,100,'104.png','2018-04-03','104..',400,1) ;
+
+insert into product(product_id,product_name,product_type,product_price,product_count,product_image,product_date,product_desc,product_sale,product_status)  
+	values ('105','流浪地球CN171运兵车','玩具',199.5,100,'105.png','2019-03-02','105..',500,1) ;
+
+insert into product(product_id,product_name,product_type,product_price,product_count,product_image,product_date,product_desc,product_sale,product_status)   
+	values ('106','回力袜子男抗菌中筒袜秋冬新品情侣款','服装',42,100,'106.jpeg','2019-03-02','106..',500,1) ;
+	
+insert into product(product_id,product_name,product_type,product_price,product_count,product_image,product_date,product_desc,product_sale,product_status)  
+	values ('107','周生生水波纹手链','首饰',1629,100,'107.jpeg','2017-06-14','107..',500,1) ;
+
+insert into product(product_id,product_name,product_type,product_price,product_count,product_image,product_date,product_desc,product_sale,product_status)   
+	values ('108','腾讯视频年卡+京东PLUS会员','硬件',148,100,'108.png','2019-06-24','108..',500,1) ;
+
+insert into product(product_id,product_name,product_type,product_price,product_count,product_image,product_date,product_desc,product_sale,product_status)  
+	values ('109','Dyson戴森 手持无线吸尘器 V7','家电',1199,100,'109.jpeg','2013-05-22','109..',500,1) ;
+
+insert into product(product_id,product_name,product_type,product_price,product_count,product_image,product_date,product_desc,product_sale,product_status)  
+	values ('110','京东京造 哥窑自动茶具套装','家居',519,100,'110.jpeg','2018-05-08','110..',500,1) ;
+
+insert into product(product_id,product_name,product_type,product_price,product_count,product_image,product_date,product_desc,product_sale,product_status)  
+	values ('112','鸭鸭佟丽娅同款工装羽绒服','服装',699,100,'112.jpeg','2022-11-02','112..',500,1) ;
+
+insert into product(product_id,product_name,product_type,product_price,product_count,product_image,product_date,product_desc,product_sale,product_status)  
+	values ('113','JBL T115TWS真无线耳机','家电',168,100,'113.jpeg','2022-01-01','113..',500,1) ;
+
+insert into product(product_id,product_name,product_type,product_price,product_count,product_image,product_date,product_desc,product_sale,product_status)  
+	values ('114','玖合 256GB SATA3 SSD固态硬盘','硬件',96,100,'114.jpeg','2012-12-12','114..',500,1) ;
 ```
 
