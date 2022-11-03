@@ -34,10 +34,10 @@
         <div id="title">商品添加</div>
 
         <form id="frm">
-            商品编号：<input type="text" id="pid"/><p/>
-            商品名称：<input type="text" id="name"/><p/>
+            商品编号：<input type="text" id="pid" name="productId"/><p/>
+            商品名称：<input type="text" id="name" name="productName"/><p/>
             商品类型：
-                <select id="type">
+                <select id="type" name="productType">
                     <option value="家电">家电</option>
                     <option value="家居">家居</option>
                     <option value="服装">服装</option>
@@ -46,15 +46,15 @@
                     <option value="硬件">硬件</option>
                 </select>
                 <p/>
-            商品价格：<input type="text" id="price"/><p/>
+            商品价格：<input type="text" id="price" name="productPrice"/><p/>
             上货日期：
-            <select id="year"></select>
-            <select id="month"></select>
-            <select id="day"></select>
+            <select id="year" name="year"></select>
+            <select id="month" name="month"></select>
+            <select id="day" name="day"></select>
             <p/>
             是否下架：
-            <input type="radio" name="isDown" checked/>是
-            <input type="radio" name="isDown"/>否
+            <input type="radio" name="isDown" value="1" checked/>上架
+            <input type="radio" name="isDown" value="0"/>下架
             <p/>
             <button type="button" id="btnAdd">添加</button>
             <button type="button" id="btnUpdate">修改</button>

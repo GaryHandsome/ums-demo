@@ -200,8 +200,49 @@ $(function(){
     queryAllProduct() ;
 }) ;
 
+/**
+ * 清空表单
+ */
+function clearForm() {
+    $("#pid").val("") ;
+    $("#name").val("");
+    $("#type option:eq(0)").prop("selected",true) ;
+    // $("#type").find("option").eq(0).prop("selected",true)
+    $("#price").val("");
+
+    initYear() ;
+    initMonth() ;
+    let now = new Date() ;
+    let year = now.getFullYear();
+    let month = now.getMonth() + 1 ;
+    initDay(year,month) ;
+
+    $("input[name=isDown]:eq(0)").prop("checked",true)
+
+}
 
 
+// 添加商品信息
+$("#btnAdd").click(function (){
+    // let formData = $("#frm").serialize();
+    $.ajax({
+        url:'product_add.do',
+        method:'post',
+        data:$("#frm").serialize(),
+        dataType:'json',
+        success:function( res ){
+            alert(res.msg) ;
+
+            if(res.code == 200) {
+                clearForm() ;
+                $("#pid").focus() ;
+            }
+        },
+        error:function() {
+            console.log("服务器发生异常，请联系管理员：110")
+        }
+    }) ;
+}) ;
 
 
 

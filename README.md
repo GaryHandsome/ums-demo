@@ -330,7 +330,37 @@ req.onreadystatechange = function() {
 
 #### 2）JQ实现
 
+2.1）$.ajax
 
+```java
+$.ajax({
+    url:'服务器程序的URL地址',
+    method:'请求方式（get、post）',
+    data:'传递服务器的数据',
+    dataType:'设置响应数据的类型，默认是text，可以设置为json',
+    success:function( res ){
+    // 成功响应的处理，其中参数res就是服务器响应回来的数据（JSON）
+    },
+    error:function() {
+        // 服务器错误的响应的处理
+    },....
+}) ;
+```
+
+说明：
+
+- data选项有两种方式传值
+  - URL重写传递：参数名称1=值&参数名称2=值&...
+  - 对象传递：`{属性名称1:值,...,属性名称N:值}`
+  - 注：在JQ中，提供了一个方法`serialize()`，帮助我们把数据序列化字符串，便于提交给服务器
+
+
+
+2.2）$.get
+
+
+
+2.3）$.post
 
 
 
