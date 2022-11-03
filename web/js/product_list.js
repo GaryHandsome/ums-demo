@@ -246,6 +246,33 @@ $("#btnAdd").click(function (){
     }) ;
 }) ;
 
+// 删除商品信息 - 注意：动态生成节点，必须使用on方法实现事件的绑定
+$("#tbl").on("click",".spanDel",function(){
+
+    if(confirm("您真要删除码？")) {
+
+        // 1.获取当前要删除的行
+        let delTr = $(this).closest("tr") ;
+
+        // 2.获取删除商品的编号
+        let pid = $(this).closest("tr").find("td").eq(1).text() ;
+
+        // 3.定义传递到服务器的数据（两种方法）
+        // let data = {productId:pid } ;
+        let data = "productId=" + pid ;
+
+        // 4.向服务器发起 get 请求，实现商品的删除
+        $.get('product_delete.do', data , function( res ){
+            alert(res.msg) ;
+
+            if(res.code==200) {
+                // DOM操作 - 删除当有行
+                delTr.remove() ;
+            }
+        }, 'json');
+    }
+}) ;
+
 
 
 

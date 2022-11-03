@@ -46,6 +46,7 @@ insert into userinfo(username,password,user_age,user_sex,weight)
 **命名规范：xxx.xxx.entity.XxxXxx**
 
     ctrl + alt + l : 代码格式化
+    ctrl + alt + o : 清除多余的包
     alt + insert : 生成代码
     alt + enter : 万能键（代码提示）
     alt + shift + 向上|向下 ：移动代码
@@ -333,6 +334,7 @@ req.onreadystatechange = function() {
 2.1）$.ajax
 
 ```java
+// 向服务器发起异步的请求
 $.ajax({
     url:'服务器程序的URL地址',
     method:'请求方式（get、post）',
@@ -368,9 +370,19 @@ $.ajax({
 
 2.2）$.get
 
+```js
+// 向服务器发起一个异步的get请求
+$.get(服务器程序URL地址, [传递服务器的数据], [成功响应的回调函数], [数据类型]);
+```
+
 
 
 2.3）$.post
+
+```js
+// 向服务器发起一个异步的post请求
+$.post(url, [data], [callback], [type]);
+```
 
 
 
