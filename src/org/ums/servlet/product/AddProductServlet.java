@@ -27,7 +27,7 @@ import java.util.List;
 public class AddProductServlet extends BaseServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 第一：获取客户端发送的数据（合法性的验证） - ?
+        // 第一：获取客户端发送的数据（合法性的验证） -
         String productId = req.getParameter("productId");
         String productName = req.getParameter("productName");
         String productType = req.getParameter("productType");
@@ -38,7 +38,6 @@ public class AddProductServlet extends BaseServlet {
         String strDate = year + "-" + month + "-" + day;
         Date productDate = DateUtil.parseDate(strDate);
         int productStatus = Integer.parseInt(req.getParameter("isDown"));
-
 
 
         Product product = new Product() ;
@@ -57,8 +56,8 @@ public class AddProductServlet extends BaseServlet {
         // 第四：打印输出 - 响应客户端
         ResponseData responseData = null ;
         if(row==1) {
-            responseData = success(200,"添加成功",null);
-            String json = new Gson().toJson(responseData);
+            responseData = success(200,"添加成功",product);
+            String json = new GsonBuilder().setDateFormat("yyyy-MM-dd").create().toJson(responseData);
             print(resp,json);
             return;
         }

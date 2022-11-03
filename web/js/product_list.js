@@ -232,9 +232,11 @@ $("#btnAdd").click(function (){
         dataType:'json',
         success:function( res ){
             alert(res.msg) ;
+            console.log(res.data) ;
 
             if(res.code == 200) {
                 clearForm() ;
+                createTr($("#tbl tbody"),res.data) ;
                 $("#pid").focus() ;
             }
         },
