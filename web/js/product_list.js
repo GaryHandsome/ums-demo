@@ -5,7 +5,7 @@
  */
 function createTr(table, p) {
     // 第一：创建td节点
-    var td1 = $("<td><input type='checkbox' class='ckAll' value='" + p.pid + "'></input></td>");
+    var td1 = $("<td><input type='checkbox' class='ckAll' name='productIds' value='" + p.productId + "'></input></td>");
     var td2 = $("<td>" + p.productId + "</td>");
     var td3 = $("<td>" + p.productName + "</td>");
     var td4 = $("<td>" + p.productPrice + "</td>");
@@ -273,6 +273,33 @@ $("#tbl").on("click",".spanDel",function(){
     }
 }) ;
 
+
+
+/**
+ * 全选
+ */
+$("#checkAll").click(function(){
+    // 获取全选复选框的状态
+    let checkAllState = $("#checkAll").prop("checked") ;
+
+    // 设置各行复选框的状态与全选复选框的状态一致
+    $(".ckAll").prop("checked",checkAllState) ;
+}) ;
+
+// 批量删除
+$("#btnDels").click(function (){
+
+
+    if(confirm("您真要删除选中的数据码？")) {
+        // 1.获取选中的复选框的商品编号 - productIds=102&productIds=103
+        let data = $(".ckAll:checked").serialize() ;
+
+        // 2.发起异步 get 请求
+        $.get('product_deletes', data, function( res ){
+            console.log( res ) ;
+        }, 'json');
+    }
+}) ;
 
 
 
