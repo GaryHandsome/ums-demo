@@ -20,7 +20,7 @@ import java.io.IOException;
  * @Date 2022-11-02
  * @Author zqx
  */
-@WebServlet("/product_delete.do")
+@WebServlet("/product_deletes.do")
 public class DeletesProductServlet extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -295,7 +295,7 @@ $("#btnDels").click(function (){
         let data = $(".ckAll:checked").serialize() ;
 
         // 2.发起异步 get 请求
-        $.get('product_deletes', data, function( res ){
+        $.get('product_deletes.do', data, function( res ){
             console.log( res ) ;
         }, 'json');
     }
