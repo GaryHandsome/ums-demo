@@ -1,5 +1,7 @@
 package org.ums.test;
 
+import org.ums.dao.impl.ProductDaoImpl;
+
 /**
  * 测试批量删除商品
  *
@@ -8,6 +10,8 @@ package org.ums.test;
  */
 public class ProductTest {
     public static void main(String[] args) {
-        String[] pids = {} ;
+        String[] pids = {"103","104"} ;
+        int count = new ProductDaoImpl().deleteProduct(pids);
+        System.out.println(count);
     }
 }
