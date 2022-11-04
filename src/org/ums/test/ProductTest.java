@@ -10,8 +10,10 @@ import org.ums.dao.impl.ProductDaoImpl;
  */
 public class ProductTest {
     public static void main(String[] args) {
-        String[] pids = {"103","104"} ;
+        String[] pids = {"106","107","105"} ;
+
         int count = new ProductDaoImpl().deleteProduct(pids);
+
         System.out.println(count);
     }
 }

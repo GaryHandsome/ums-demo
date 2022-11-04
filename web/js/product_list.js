@@ -296,7 +296,11 @@ $("#btnDels").click(function (){
 
         // 2.发起异步 get 请求
         $.get('product_deletes.do', data, function( res ){
-            console.log( res ) ;
+            alert(res.msg) ;
+            if(res.code == 200) {
+                // 删除复选框选中的行
+                $(".ckAll:checked").closest("tr").remove();
+            }
         }, 'json');
     }
 }) ;

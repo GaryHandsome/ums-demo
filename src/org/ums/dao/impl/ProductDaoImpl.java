@@ -135,7 +135,7 @@ public class ProductDaoImpl implements ProductDao {
 
             // 第六：对象结果进行处理
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             try {
                 conn.rollback();
             } catch (SQLException ex) {

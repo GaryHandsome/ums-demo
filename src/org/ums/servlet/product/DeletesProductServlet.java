@@ -28,18 +28,8 @@ public class DeletesProductServlet extends BaseServlet {
         // 第一：获取客户端发送的数据（合法性的验证） - pids = [102,103]
         String[] pids = req.getParameterValues("productIds");
 
-        int count = 0 ;
-
         // 第二：加工处理（业务处理） - 如果业务复杂，则抽象业务对象来处理
-        ProductDao productDao = new ProductDaoImpl();
-
-        for (String pid : pids) {
-            int row = productDao.deleteProduct(pid);
-
-            if(row==1) {
-                count ++ ;
-            }
-        }
+        int count =  new ProductDaoImpl().deleteProduct(pids);
 
         // 第三：把数据转为 JSON 字符串
         // 第四：打印输出 - 响应客户端
