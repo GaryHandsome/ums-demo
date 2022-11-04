@@ -11,7 +11,7 @@ function createTr(table, p) {
     var td4 = $("<td>" + p.productPrice + "</td>");
     var td5 = $("<td>" + p.productDate + "</td>");
     var td6 = $("<td><input type='checkbox'></input></td>");
-    var td7 = $("<td><span class='spanDel'>删除</span><span class='spanUpdate'>修改</span><span class='spanDetail'>详情</span></td>");
+    var td7 = $("<td><span class='spanDel'>删除</span><span class='spanUpdate' data-type='" + p.productType + "'>修改</span><span class='spanDetail'>详情</span></td>");
 
     // 设置商品是否下架 - find方法是向下查找匹配元素
     td6.find(":checkbox").prop("checked", (p.productStatus == 0));
@@ -286,6 +286,7 @@ $("#checkAll").click(function(){
     $(".ckAll").prop("checked",checkAllState) ;
 }) ;
 
+
 // 批量删除
 $("#btnDels").click(function (){
 
@@ -304,6 +305,100 @@ $("#btnDels").click(function (){
         }, 'json');
     }
 }) ;
+
+
+function showData(span) {
+    let tds = span.closest("tr").children() ;
+
+    $("#pid").val($(tds[1]).text()) ;
+    $("#name").val($(tds[2]).text()) ;
+    $("#price").val($(tds[3]).text()) ;
+
+    // 获取商品的类型
+    let productType = span.data("type") ;
+
+    $("#type option").filter(function(){
+        return $(this).text() == productType ;
+    }).prop("selected",true) ;
+
+    // 分别获取日期中年、月、日
+    let arr = $(tds[4]).text().split("-") ;
+    let y = arr[0] ;
+    let m = arr[1] ;
+    let d = arr[2] ;
+
+    // 表单匹配选中上面的日期
+    $("#year option").filter(function(){
+        return $(this).text() == y ;
+    }).prop("selected",true) ;
+
+    $("#month option").filter(function(){
+        return $(this).text() == m ;
+    }).prop("selected",true) ;
+
+    $("#day option").filter(function(){
+        return $(this).text() == d ;
+    }).prop("selected",true) ;
+
+    // 获取复选框状态
+    let status = $(tds[5]).find(":checkbox").prop("checked")
+
+    if(status) {
+        $("input[name=isDown]:eq(1)").prop("checked",true)
+    } else {
+        $("input[name=isDown]:eq(0)").prop("checked",true)
+    }
+}
+
+// 点击修改按钮，把数据回显在修改表单中
+$("#tbl tbody").on("click",".spanUpdate",function(){
+    // 回显数据
+    showData($(this)) ;
+
+    // 设置表单的状态
+    $("#title").text("商品修改") ;
+    $("#pid").prop("readOnly",true) ;
+    $("#btnAdd").hide();
+    $("#btnUpdate").show() ;
+
+}) ;
+
+// 修改操作
+$("#btnUpdate").click(function (){
+    // 1.获取表单中输入的数据，序列数据字符串（URL重写的字符串格式）
+    let data = $("#frm").serialize();
+
+    // 发起异步请求，实现数据的修改操作
+    $.post("product_update.do", data, function( res ){
+        alert(res.msg) ;
+
+        if(res.code == 200) {
+            // 获取文本框的商品编号
+            let pid = $("#pid").val() ;
+
+            // 找到修改数据所在的行
+            let tr = $("#tbl tbody tr").filter(function(){
+                return $($(this).children()[1]).text() == pid ;
+            }) ;
+
+            // 获取行中的所有列
+            let td = tr.children();
+
+            // 在页面中，显示最新修改的结果
+            $(td[2]).text(res.data.productName) ;
+            $(td[3]).text(res.data.productPrice) ;
+            $(td[4]).text(res.data.productDate) ;
+            if(res.data.productStatus==0) {
+                tr.find("checkbox:eq(1)").prop("checked",true) ;
+            } else {
+                tr.find("checkbox:eq(1)").prop("checked",false) ;
+            }
+            tr.find(".spanUpdate").data("type",res.data.productType) ;
+        }
+    }, "json");
+}) ;
+
+
 
 
 
