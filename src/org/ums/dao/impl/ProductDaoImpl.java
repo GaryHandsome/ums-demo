@@ -106,44 +106,47 @@ public class ProductDaoImpl implements ProductDao {
             // 第二：获取连接对象
             conn = DBUtil.getConnection();
 
-            // 第三：设置事务操作为手动提交，默认是自动提交
+            // 第四：设置事务操作为手动提交，默认是自动提交
             conn.setAutoCommit(false);
 
-            // 第三：预编译SQL语句，实例化语句对象
+            // 第五：预编译SQL语句，实例化语句对象
             pstmt = conn.prepareStatement(sql);
 
-            // 第四：填充数据 -- 循环填充并执行
+            // 第六：填充数据 -- 循环填充并执行
             for (String pid : pids) {
-                // 填充数据
+                // 1.填充数据
                 pstmt.setString(1, pid);
 
-                // 第五：执行SQL语句，并接收执行的结果
+                // 2.行SQL语句，并接收执行的结果
                 int r = pstmt.executeUpdate();
 
-                // 统计成功操作的数量
+                // 3.失败执行则回滚事务
                 if(r==0) {
                    conn.rollback();
                    return 0;
                 }
+                // 4.统计成功操作的数量
                 count ++ ;
             }
 
+            // 第七：判断全部操作是否全都成功，成功才提交事务
             if(count == pids.length) {
                 // 提交事务 - 数据在数据库中真正的更新
                 conn.commit();
             }
 
-            // 第六：对象结果进行处理
+            // 第八：对象结果进行处理
 
         } catch (Exception e) {
             try {
+                // 如果程序在执行过程中发生异常，则事务回滚
                 conn.rollback();
             } catch (SQLException ex) {
                 throw new RuntimeException("事务回滚失败",ex);
             }
             throw new RuntimeException("批量删除失败",e);
         } finally {
-            // 第七：关闭相关的对象
+            // 第九：关闭相关的对象
             DBUtil.close(null, pstmt, conn);
         }
 
