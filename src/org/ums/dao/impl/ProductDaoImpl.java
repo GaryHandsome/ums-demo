@@ -92,6 +92,65 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
+    public int deleteProduct(String[] pids) {
+        // 统计成功执行操作的数量
+        int count = 0;
+
+        // 第一：定义要操作数据库的SQL语句
+        String sql = "delete from product where product_id=?";
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            // 第二：获取连接对象
+            conn = DBUtil.getConnection();
+
+            // 第三：设置事务操作为手动提交，默认是自动提交
+            conn.setAutoCommit(false);
+
+            // 第三：预编译SQL语句，实例化语句对象
+            pstmt = conn.prepareStatement(sql);
+
+            // 第四：填充数据 -- 循环填充并执行
+            for (String pid : pids) {
+                // 填充数据
+                pstmt.setString(1, pid);
+
+                // 第五：执行SQL语句，并接收执行的结果
+                int r = pstmt.executeUpdate();
+
+                // 统计成功操作的数量
+                if(r==0) {
+                   conn.rollback();
+                   return 0;
+                }
+                count ++ ;
+            }
+
+            if(count == pids.length) {
+                // 提交事务 - 数据在数据库中真正的更新
+                conn.commit();
+            }
+
+            // 第六：对象结果进行处理
+
+        } catch (SQLException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException("事务回滚失败",ex);
+            }
+            throw new RuntimeException("批量删除失败",e);
+        } finally {
+            // 第七：关闭相关的对象
+            DBUtil.close(null, pstmt, conn);
+        }
+
+        return count;
+    }
+
+    @Override
     public int updateProduct(Product product) {
         int r = 0;
 

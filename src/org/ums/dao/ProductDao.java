@@ -22,12 +22,19 @@ public interface ProductDao {
     int insertProduct(Product product);
 
     /**
-     * 删除商品
+     * 删除商品 - 单条数据删除
      *
      * @param pid
      * @return
      */
     int deleteProduct(String pid);
+
+    /**
+     * 删除商品 - 多条数据删除 - 支持事务操作
+     * @param pids
+     * @return
+     */
+    int deleteProduct(String[] pids);
 
     /**
      * 修改商品

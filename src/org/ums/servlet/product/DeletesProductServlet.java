@@ -13,9 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 批量删除商品
+ * 批量删除商品 - 事务 - JDBC事务操作
+ *  事务，要做的某件事情（业务），这个业务背后有多个操作，如银行转帐(转入、转出)
  *
- * todo 此程序有Bug,明天使用事务解决
+ *
  *
  * @Date 2022-11-02
  * @Author zqx
