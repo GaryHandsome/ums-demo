@@ -10,7 +10,7 @@ function createTr(table, p) {
     var td3 = $("<td>" + p.productName + "</td>");
     var td4 = $("<td>" + p.productPrice + "</td>");
     var td5 = $("<td>" + p.productDate + "</td>");
-    var td6 = $("<td><input type='checkbox'></input></td>");
+    var td6 = $("<td><input type='checkbox' class='xiaJia'></input></td>");
     var td7 = $("<td><span class='spanDel'>删除</span><span class='spanUpdate' data-type='" + p.productType + "'>修改</span><span class='spanDetail'>详情</span></td>");
 
     // 设置商品是否下架 - find方法是向下查找匹配元素
@@ -368,31 +368,35 @@ $("#btnUpdate").click(function (){
     // 1.获取表单中输入的数据，序列数据字符串（URL重写的字符串格式）
     let data = $("#frm").serialize();
 
-    // 发起异步请求，实现数据的修改操作
+    // 2.发起异步请求，实现数据的修改操作
     $.post("product_update.do", data, function( res ){
+        // 2.1、弹出操作结果
         alert(res.msg) ;
 
+        // 2.2、更新页面数据
         if(res.code == 200) {
-            // 获取文本框的商品编号
+            // 1）获取文本框的商品编号
             let pid = $("#pid").val() ;
 
-            // 找到修改数据所在的行
+            // 2）找到修改数据所在的行
             let tr = $("#tbl tbody tr").filter(function(){
                 return $($(this).children()[1]).text() == pid ;
             }) ;
 
-            // 获取行中的所有列
+            // 3）获取行中的所有列
             let td = tr.children();
 
-            // 在页面中，显示最新修改的结果
+            // 4）在页面中，显示修改后的数据
             $(td[2]).text(res.data.productName) ;
             $(td[3]).text(res.data.productPrice) ;
             $(td[4]).text(res.data.productDate) ;
-            if(res.data.productStatus==0) {
-                tr.find("checkbox:eq(1)").prop("checked",true) ;
+
+            if(res.data.productStatus == 1) {
+                tr.find(".xiaJia").prop("checked",false) ;
             } else {
-                tr.find("checkbox:eq(1)").prop("checked",false) ;
+                tr.find(".xiaJia").prop("checked",true) ;
             }
+            // tr.find(".spanUpdate").attr("data-type",res.data.productType) ;
             tr.find(".spanUpdate").data("type",res.data.productType) ;
         }
     }, "json");
