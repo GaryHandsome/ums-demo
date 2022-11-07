@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deferred的应用</title>
+    <script src="../js/jquery-1.12.4.js"></script>
+</head>
+<body>
+
+    <script>
+
+        let oneAjax = $.ajax({
+            url:'one.do'
+        }) ;
+
+        let twoAjax = $.ajax({
+            url:'two.do'
+        }) ;
+
+        let threeAjax = $.ajax({
+            url:'three.do'
+        }) ;
+
+        $.when(oneAjax,twoAjax,threeAjax).then(function( res1,res2,res3 ) {
+            console.log(res1)
+            console.log(res1[0])
+            console.log(res2[0])
+            console.log(res3[0])
+        });
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+</html>

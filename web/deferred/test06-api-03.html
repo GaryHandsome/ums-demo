@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deferred的常用API方法</title>
+    <script src="../js/jquery-1.12.4.js"></script>
+</head>
+<body>
+
+    <script>
+
+        // 注意：ajax方法返回 deferred 对象，
+        // 可以同时指定多个 done，执行顺序执行
+        $.ajax({
+            url:'api.do'
+        }).done(function( res ){
+            console.log("处理一")
+        }).done(function (res) {
+            console.log("处理二")
+        }).fail(function(){
+            console.log("你的数学是体育老师教的吧!")
+        }) ;
+
+
+
+
+
+
+
+    </script>
+
+</body>
+</html>

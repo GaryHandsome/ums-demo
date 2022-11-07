@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deferred的常用API方法</title>
+    <script src="../js/jquery-1.12.4.js"></script>
+</head>
+<body>
+
+    <script>
+
+        // 注意：ajax方法返回 deferred 对象，
+        // 语法：then(成功回调,失败回调)
+        // then = done + fail
+        $.ajax({
+            url:'api.do'
+        }).then(function(res){
+            console.log(res) ;
+        },function(res){
+            if(res.status==500) {
+                console.log("你的数学是体育老师教的吧!")
+            }
+        }).always(function(){
+            console.log("不管成功与否，都会被执行 - finally ")
+        }) ;
+
+
+
+
+
+
+
+    </script>
+
+</body>
+</html>
