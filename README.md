@@ -406,15 +406,48 @@ $.post(url, [data], [callback], [type]);
 
 
 
-
-
-
-
 3）自定义延迟对象
 
+deferred对象可以应用在异步请求、同步请求，同时也可以应用在本地方法中。操作步骤如下：
 
+```js
+// 第一：定义一个返回 deferred 对象的方法
+function wait() {
+    // 1：创建延迟对象
+    let dfd = $.Deferred()
 
+    // 文本标记定义法
+    let tasks = function(){
+        console.log("任务执行完毕！");
 
+        // 2：改变延迟对象的状态（三种） -- 业务逻辑进行判断
+        // dfd.resolve();
+        dfd.reject() ;
+    };
+    // 5秒后，调用 tasks 函数
+    setTimeout(tasks,5000);
+
+    // 3：返回延迟对象
+    return dfd ;
+};
+
+// 第二：通过$.when方法使用延迟对象
+$.when(wait()).done(function(){
+    console.log("成功执行")
+}).fail(function(){
+    console.log("失败执行")
+}) ;
+```
+
+- dtd.resolve()
+
+  把deferred对象的未完成状态，改变为已完成状态，从而触发调用done方法
+
+- dtd.reject()
+
+  把deferred对象的未完成状态，改变为已失败状态，从而触发调用fail方法
+
+当然，根据业务逻辑进行判断调用 
 
 
 

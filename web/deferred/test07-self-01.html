@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义Deferred对象</title>
+    <script src="../js/jquery-1.12.4.js"></script>
+</head>
+<body>
+
+    <script>
+
+        // deferred对象可以应用在异步请求、同步请求，
+        // 同时也可以应用在本地方法中
+
+        // 定义一个函数wait，模拟实现一个很耗时的操作
+        function wait() {
+            // 文本标记定义法
+            let tasks = function(){
+                console.log("任务执行完毕！");
+            };
+            // 5秒后，调用 tasks 函数
+            setTimeout(tasks,5000);
+        };
+
+        $.when(wait()).done(function(){
+            console.log("成功执行")
+        }).fail(function(){
+            console.log("失败执行")
+        }) ;
+
+        /**
+         * 我们期望先输出“任务执行完毕！”，然后再输出“成功执行”，
+         * 但是此案例做不到，为什么呢？
+         *
+         * $.when方法的参数必须是延迟对象
+         */
+
+
+
+
+
+    </script>
+
+</body>
+</html>
