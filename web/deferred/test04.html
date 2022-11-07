@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deferred的应用</title>
+    <script src="../js/jquery-1.12.4.js"></script>
+</head>
+<body>
+
+    <script>
+        // 注意：调用ajax方法时，返回 referred 对象 ，此对象必须有相应的属性或方法
+        $.ajax({
+            url:'one.do'
+        }).then(function( data ){
+            console.log( data ) ;
+            // 返回新的延迟对象，便于下一个 then 方法访问
+            return $.ajax({url:'two.do'}) ;
+        }).then(function( data ){
+            console.log( data ) ;
+            return $.ajax({url:'three.do'})
+        }).then(function( data ){
+            console.log( data )
+        })  ;
+
+
+
+        $.ajax({
+            url:'two.do' ,
+            success:function ( data ) {
+                console.log( data )
+            }
+        }) ;
+
+        $.ajax({
+            url:'three.do' ,
+            success:function ( data ) {
+                console.log( data )
+            }
+        }) ;
+
+
+
+
+
+
+    </script>
+
+</body>
+</html>
