@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$.parseJSON的使用</title>
+    <script src="js/jquery-1.12.4.js"></script>
+</head>
+<body>
+  帐号：<span id="user"></span><br/>
+  年龄：<span id="age"></span>
+  <script>
+    $.ajax({
+      url:'parseJson.do',
+      method:'get',
+      dataType:'text',
+      // data:
+      success:function( res ) {
+        console.log(typeof res,res) ;
+        // 把 json 字符串 转换为 json 对象 - eval
+        res = $.parseJSON(res) ;
+
+        console.log(typeof res,res) ;
+
+        $("#user").text(res.name) ;
+        $("#age").text(res.age) ;
+      },
+      error:function() {
+
+      }
+    }) ;
+
+  </script>
+</body>
+</html>
